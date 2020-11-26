@@ -557,8 +557,8 @@ namespace UntitledSandbox_Server
                                 }
                                 else if (ReadPassword(plr.name) == "BadFile")
                                 {
-                                    Console.WriteLine("> Players database is corrupted.", plr.name);
-                                    SendMessage(stream, "Disconnect,CorruptedDatabase");
+                                    Console.WriteLine("> Players database is corrupted.");
+                                    SendMessage(stream, "Disconnect,CorruptedDatabase", plr.name);
                                     Task.Delay(1000).ContinueWith(t => client.Close());
                                 }
                                 else
