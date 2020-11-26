@@ -32,7 +32,7 @@ namespace UntitledSandbox_Server
         public bool loggedIn { get; set; }
     }
 
-    public class Server
+    public static class Server
     {
         #region Variables
         private static List<Player> players = new List<Player>();
@@ -149,6 +149,9 @@ namespace UntitledSandbox_Server
                                     Console.WriteLine("> Cannot load 'Banlist enabled' setting.");
                                 }
                             }
+                            break;
+                        default:
+                            Console.WriteLine("> Unknown command!");
                             break;
                     }
                 }
@@ -335,7 +338,7 @@ namespace UntitledSandbox_Server
                             #endregion
                             #region GetHP
                             case "GetHP":
-                                SendMessage(stream, "Player,ReturnHP," + plr.hp.ToString(), plr.name);
+                                SendMessage(stream, "Player,ReturnHP," + plr.hp.ToString(CultureInfo.InvariantCulture), plr.name);
                                 break;
                             #endregion
                             #region SetHP
@@ -368,14 +371,14 @@ namespace UntitledSandbox_Server
                             #endregion
                             #region GetPlayers
                             case "GetPlayers":
-                                string playersList = "";
+                                StringBuilder builder = new StringBuilder();
                                 for (int i = 0; i < players.Count; i++)
                                 {
-                                    if (i == players.Count - 1) playersList += players[i].name;
-                                    else playersList += players[i].name + ",";
+                                    if (i == players.Count - 1) builder.Append(players[i].name);
+                                    else builder.Append(players[i].name + ",");
                                 }
-                                if (playersList == "") return;
-                                SendMessage(stream, "Players,ReturnPlayers," + playersList, plr.name);
+                                if (builder.ToString() == "") return;
+                                SendMessage(stream, "Players,ReturnPlayers," + builder.ToString(), plr.name);
                                 break;
                             #endregion
                             #region GetPlayerData
@@ -401,19 +404,19 @@ namespace UntitledSandbox_Server
                             #region SendMessage
                             case "SendMessage":
                                 bool isChatEnabled = true;
-                                string ChatMessage = "";
+                                StringBuilder builder = new StringBuilder();
                                 for (int i = 2; i < args.Length; i++)
                                 {
-                                    if (i == args.Length - 1) ChatMessage += args[i];
-                                    else ChatMessage += args[i] + ",";
+                                    if (i == args.Length - 1) builder.Append(args[i]);
+                                    else builder.Append(args[i] + ",");
                                 }
-                                if (ChatMessage == "") return;
+                                if (builder.ToString() == "") return;
                                 try { isChatEnabled = bool.Parse(ReadConfig(1)); }
                                 catch { /* Keep defaults if config is invalid */ }
                                 for (int i = 0; i < clients.Count; i++)
                                 {
                                     NetworkStream ns = clients[i].GetStream();
-                                    if (isChatEnabled) SendMessage(ns, "Chat,Receive," + plr.name + "," + ChatMessage, plr.name);
+                                    if (isChatEnabled) SendMessage(ns, "Chat,Receive," + plr.name + "," + builder.ToString(), plr.name);
                                     else SendMessage(ns, "Chat,Disabled", plr.name);
                                 }
                                 return;
@@ -466,14 +469,14 @@ namespace UntitledSandbox_Server
                             #endregion
                             #region GetObjects
                             case "GetObjects":
-                                string objectsList = "";
+                                StringBuilder builder = new StringBuilder();
                                 for (int i = 0; i < objects.Count; i++)
                                 {
-                                    if (i == objects.Count - 1) objectsList += objects[i].ID;
-                                    else objectsList += objects[i].ID + ",";
+                                    if (i == objects.Count - 1) builder.Append(objects[i].ID);
+                                    else builder.Append(objects[i].ID + ",");
                                 }
-                                if (objectsList == "") return;
-                                SendMessage(stream, "Players,ReturnObjects," + objectsList, plr.name);
+                                if (builder.ToString() == "") return;
+                                SendMessage(stream, "Players,ReturnObjects," + builder.ToString(), plr.name);
                                 break;
                             #endregion
                             #region GetObjectInstance
@@ -587,12 +590,13 @@ namespace UntitledSandbox_Server
                 catch { return; }
                 string message = Encoding.UTF8.GetString(data, 0, bytes);
                 string[] args = message.Split(',');
-                string content = "";
+                StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < args.Length; i++)
                 {
-                    if (i == args.Length - 1) content += args[i];
-                    else content += args[i] + ",";
+                    if (i == args.Length - 1) builder.Append(args[i]);
+                    else builder.Append(args[i] + ",");
                 }
+                string content = builder.ToString();
 
                 if (content == "") return;
 
@@ -619,7 +623,7 @@ namespace UntitledSandbox_Server
                         }
                         else if (ReadPassword(plr.name) == "BadFile")
                         {
-                            Console.WriteLine("> Players database is corrupted.", plr.name);
+                            Console.WriteLine("> Players database is corrupted.");
                             SendMessage(stream, "Disconnect,CorruptedDatabase", plr.name);
                             Task.Delay(1000).ContinueWith(t => client.Close());
                         }
@@ -641,7 +645,7 @@ namespace UntitledSandbox_Server
                         }
                         else if (ReadPassword(plr.name) == "BadFile")
                         {
-                            Console.WriteLine("> Players database is corrupted.", plr.name);
+                            Console.WriteLine("> Players database is corrupted.");
                             SendMessage(stream, "Disconnect,CorruptedDatabase", plr.name);
                             Task.Delay(1000).ContinueWith(t => client.Close());
                         }

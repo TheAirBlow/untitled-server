@@ -9,14 +9,13 @@ namespace UntitledSandbox_Server
 {
     public static class Client
     {
-        private static string name;
         public static void ClientMain()
         {
             IPAddress localAddr = IPAddress.Parse("127.0.0.1");
             int port = 5086;
             Console.Clear();
             Console.WriteLine("> Enter your nickname:");
-            name = Console.ReadLine();
+            string name = Console.ReadLine();
             TcpClient tcpClient = new TcpClient();
             tcpClient.Connect(localAddr, port);
             SendMessage(tcpClient.GetStream(), "Player,Join," + name);
@@ -64,12 +63,13 @@ namespace UntitledSandbox_Server
             int bytes = stream.Read(data, 0, data.Length);
             string message = Encoding.UTF8.GetString(data, 0, bytes);
             string[] args = message.Split(',');
-            string content = "";
+            StringBuilder builder = new StringBuilder();
             for (int i = 0; i < args.Length; i++)
             {
-                if (i == args.Length - 1) content += args[i];
-                else content += args[i] + ",";
+                if (i == args.Length - 1) builder.Append(args[i]);
+                else builder.Append(args[i] + ",");
             }
+            string content = builder.ToString();
 
             switch (args[0])
             {
@@ -87,14 +87,14 @@ namespace UntitledSandbox_Server
                         switch (args[1])
                         {
                             case "Receive":
-                                string ChatMessage = "";
+                                builder = new StringBuilder();
                                 for (int i = 3; i < args.Length; i++)
                                 {
-                                    if (i == args.Length - 1) ChatMessage += args[i];
-                                    else ChatMessage += args[i] + ",";
+                                    if (i == args.Length - 1) builder.Append(args[i]);
+                                    else builder.Append(args[i] + ",");
                                 }
-                                if (ChatMessage == "") return;
-                                Console.WriteLine("> {0}: {1}", args[2], ChatMessage);
+                                if (builder.ToString() == "") return;
+                                Console.WriteLine("> {0}: {1}", args[2], builder.ToString());
                                 break;
                             case "PlayerKicked":
                                 Console.WriteLine("> {0} was kicked from the game.", args[2]);
@@ -122,6 +122,9 @@ namespace UntitledSandbox_Server
                                 break;
                             case "Login":
                                 Console.WriteLine("> This server uses authification. Register or login now.");
+                                break;
+                            default:
+                                // Invalid packet, ignore it
                                 break;
                         }
                     }

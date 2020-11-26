@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace UntitledSandbox_Server
 {
-    public class FileManager
+    public static class FileManager
     {
         public static string path = Directory.GetCurrentDirectory() + "/data/";
         public static string config = path + "config.txt";
@@ -63,16 +63,16 @@ namespace UntitledSandbox_Server
         public static void AppendBanlist(string name)
         {
             FixFolder();
-            string path = banlist;
-            if (!File.Exists(path)) File.Create(path);
+            string newPath = banlist;
+            if (!File.Exists(path)) File.Create(newPath);
             File.AppendAllText(path, "," + name);
         }
 
         public static void Defaults()
         {
             FixFolder();
-            string path = config;
-            File.WriteAllText(path, "true,true,true,false");
+            string newPath = config;
+            File.WriteAllText(newPath, "true,true,true,false");
         }
     }
 }

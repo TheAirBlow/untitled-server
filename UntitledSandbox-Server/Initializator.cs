@@ -6,8 +6,8 @@ namespace UntitledSandbox_Server
 {
     public static class Initializator
     {
-        public static string version = "Beta 1.0";
-        public static string product = "Untitled Sandbox Server";
+        public const string version = "Beta 1.0";
+        public const string product = "Untitled Sandbox Server";
         public static void Main()
         {
             Console.WriteLine("* Initializing...");
