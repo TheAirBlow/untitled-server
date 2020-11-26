@@ -4,14 +4,12 @@ using System.Text;
 
 namespace UntitledSandbox_Server
 {
-    public class Menu
+    public static class Menu
     {
-        public static string version = "Beta 1.0";
-        public static string product = "Untitled Sandbox Server";
         public static void MenuMain()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the " + product);
+            Console.WriteLine("Welcome to the " + Initializator.product);
             Console.WriteLine("1 - Server");
             Console.WriteLine("2 - Client");
             Console.WriteLine("3 - Settings");

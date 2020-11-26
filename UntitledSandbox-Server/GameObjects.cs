@@ -14,7 +14,7 @@ namespace UntitledSandbox_Server
         public Vector3 rot { get; set; }
     }
 
-    public class ObjectsHelper
+    public static class ObjectsHelper
     {
         public static string EncodeGameObject(GameObject obj)
         {

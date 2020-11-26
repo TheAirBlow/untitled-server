@@ -4,7 +4,7 @@ using static UntitledSandbox_Server.FileManager;
 
 namespace UntitledSandbox_Server
 {
-    public class Initializator
+    public static class Initializator
     {
         public static string version = "Beta 1.0";
         public static string product = "Untitled Sandbox Server";
@@ -14,8 +14,8 @@ namespace UntitledSandbox_Server
             Console.Title = product + " " + version;
             try 
             { 
-                if (!File.Exists(Data.config)) Defaults();
-                if (!File.Exists(Data.banlist)) File.Create(Data.banlist);
+                if (!File.Exists(config)) Defaults();
+                if (!File.Exists(banlist)) File.Create(banlist);
                 Menu.MenuMain();
             }
             catch (Exception e)

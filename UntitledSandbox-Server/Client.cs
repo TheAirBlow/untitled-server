@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace UntitledSandbox_Server
 {
-    public class Client
+    public static class Client
     {
-        public static string name;
+        private static string name;
         public static void ClientMain()
         {
             IPAddress localAddr = IPAddress.Parse("127.0.0.1");
@@ -107,6 +107,9 @@ namespace UntitledSandbox_Server
                                 break;
                             case "PlayerLeaved":
                                 Console.WriteLine("> {0} has leaved the game.", args[2]);
+                                break;
+                            default:
+                                // Invalid packet, ignore it
                                 break;
                         }
                     }

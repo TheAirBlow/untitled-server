@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
@@ -34,11 +35,11 @@ namespace UntitledSandbox_Server
     public class Server
     {
         #region Variables
-        public static List<Player> players = new List<Player>();
-        public static List<TcpClient> clients = new List<TcpClient>();
-        public static List<GameObject> objects = new List<GameObject>();
-        public static string PlayerToKick = "";
-        public static string PlayerToBan = "";
+        private static List<Player> players = new List<Player>();
+        private static List<TcpClient> clients = new List<TcpClient>();
+        private static List<GameObject> objects = new List<GameObject>();
+        private static string PlayerToKick = "";
+        private static string PlayerToBan = "";
         #endregion
 
         #region Other
@@ -408,7 +409,7 @@ namespace UntitledSandbox_Server
                                 }
                                 if (ChatMessage == "") return;
                                 try { isChatEnabled = bool.Parse(ReadConfig(1)); }
-                                catch { }
+                                catch { /* Keep defaults if config is invalid */ }
                                 for (int i = 0; i < clients.Count; i++)
                                 {
                                     NetworkStream ns = clients[i].GetStream();
@@ -499,13 +500,13 @@ namespace UntitledSandbox_Server
                                 try
                                 {
                                     SendMessageToEveryone("GameObjects,UpdatedObject," +
-                                        int.Parse(args[2]).ToString() + "," +
-                                        float.Parse(args[3]).ToString() + "," +
-                                        float.Parse(args[4]).ToString() + "," +
-                                        float.Parse(args[5]).ToString() + "," +
-                                        float.Parse(args[6]).ToString() + "," +
-                                        float.Parse(args[7]).ToString() + "," +
-                                        float.Parse(args[8]).ToString());
+                                        int.Parse(args[2]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[3]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[4]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[5]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[6]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[7]).ToString(CultureInfo.InvariantCulture) + "," +
+                                        float.Parse(args[8]).ToString(CultureInfo.InvariantCulture));
                                 }
                                 catch
                                 {
@@ -649,7 +650,13 @@ namespace UntitledSandbox_Server
                             SendMessage(stream, "Chat,Receive,Server,You're already registered!", plr.name);
                         }
                         break;
-                        #endregion
+                    #endregion
+                    #region Default
+                    default:
+                        SendMessage(stream, "Disconnect,WrongPacket", plr.name);
+                        Task.Delay(1000).ContinueWith(t => client.Close());
+                        break;
+                    #endregion
                 }
             }
             catch (Exception e)

@@ -3,7 +3,7 @@ using static UntitledSandbox_Server.FileManager;
 
 namespace UntitledSandbox_Server
 {
-    public class Settings
+    public static class Settings
     {
         public static void SettingsMain()
         {

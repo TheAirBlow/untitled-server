@@ -19,10 +19,10 @@ namespace UntitledSandbox_Server
         public string password { get; set; }
     }
 
-    public class SaveSystem
+    public static class SaveSystem
     {
-        public static string path = Directory.GetCurrentDirectory() + "/data/";
-        public static string database = path + "players.db";
+        private static string path = Directory.GetCurrentDirectory() + "/data/";
+        private static string database = path + "players.db";
 
         public static string ReadPassword(string user)
         {
@@ -124,7 +124,6 @@ namespace UntitledSandbox_Server
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
-                return;
             }
         }
     }
