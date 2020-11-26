@@ -24,9 +24,8 @@ namespace UntitledSandbox_Server
         public static string ReadConfig(int index)
         {
             FixFolder();
-            string path = config;
-            if (!File.Exists(path)) File.Create(path);
-            string content = File.ReadAllText(path);
+            if (!File.Exists(config)) File.Create(config);
+            string content = File.ReadAllText(config);
             string[] data = content.Split(',');
             if (data.Length <= index) return "Unknown";
             return data[index];
@@ -41,21 +40,20 @@ namespace UntitledSandbox_Server
             string[] contents = content.Split(',');
             if (contents.Length <= index) return;
             contents[index] = data;
-            content = "";
+            StringBuilder builder = new StringBuilder();
             for (int i = 0; i < contents.Length; i++)
             {
-                if (i == contents.Length - 1) content += contents[i];
-                else content += contents[i] + ",";
+                if (i == contents.Length - 1) builder.Append(contents[i]);
+                else builder.Append(contents[i] + ",");
             };
-            File.WriteAllText(path, content);
+            File.WriteAllText(path, builder.ToString());
         }
 
         public static List<string> ReadBanlist()
         {
             FixFolder();
-            string path = banlist;
-            if (!File.Exists(path)) File.Create(path);
-            string content = File.ReadAllText(path);
+            if (!File.Exists(banlist)) File.Create(banlist);
+            string content = File.ReadAllText(banlist);
             string[] data = content.Split(',');
             return data.ToList();
         }

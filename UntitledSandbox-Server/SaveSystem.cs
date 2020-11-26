@@ -33,8 +33,7 @@ namespace UntitledSandbox_Server
                 if (File.ReadAllText(database) == "") return "PlayerNotRegistered";
                 stream = File.OpenRead(database);
                 BinaryFormatter formatter = new BinaryFormatter();
-                PlayersDatabase db = new PlayersDatabase();
-                db = (PlayersDatabase)formatter.Deserialize(stream);
+                PlayersDatabase db = (PlayersDatabase)formatter.Deserialize(stream);
 
                 stream.Close();
 

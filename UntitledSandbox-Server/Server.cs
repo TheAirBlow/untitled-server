@@ -257,12 +257,13 @@ namespace UntitledSandbox_Server
                 catch { return; }
                 string message = Encoding.UTF8.GetString(data, 0, bytes);
                 string[] args = message.Split(',');
-                string content = "";
+                StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < args.Length; i++)
                 {
-                    if (i == args.Length - 1) content += args[i];
-                    else content += args[i] + ",";
+                    if (i == args.Length - 1) builder.Append(args[i]);
+                    else builder.Append(args[i] + ",");
                 }
+                string content = builder.ToString();
 
                 if (content == "") return;
 
@@ -371,14 +372,14 @@ namespace UntitledSandbox_Server
                             #endregion
                             #region GetPlayers
                             case "GetPlayers":
-                                StringBuilder builder = new StringBuilder();
+                                builder = new StringBuilder();
                                 for (int i = 0; i < players.Count; i++)
                                 {
                                     if (i == players.Count - 1) builder.Append(players[i].name);
                                     else builder.Append(players[i].name + ",");
                                 }
                                 if (builder.ToString() == "") return;
-                                SendMessage(stream, "Players,ReturnPlayers," + builder.ToString(), plr.name);
+                                SendMessage(stream, "Players,ReturnPlayers," + builder, plr.name);
                                 break;
                             #endregion
                             #region GetPlayerData
@@ -404,7 +405,7 @@ namespace UntitledSandbox_Server
                             #region SendMessage
                             case "SendMessage":
                                 bool isChatEnabled = true;
-                                StringBuilder builder = new StringBuilder();
+                                builder = new StringBuilder();
                                 for (int i = 2; i < args.Length; i++)
                                 {
                                     if (i == args.Length - 1) builder.Append(args[i]);
@@ -416,7 +417,7 @@ namespace UntitledSandbox_Server
                                 for (int i = 0; i < clients.Count; i++)
                                 {
                                     NetworkStream ns = clients[i].GetStream();
-                                    if (isChatEnabled) SendMessage(ns, "Chat,Receive," + plr.name + "," + builder.ToString(), plr.name);
+                                    if (isChatEnabled) SendMessage(ns, "Chat,Receive," + plr.name + "," + builder, plr.name);
                                     else SendMessage(ns, "Chat,Disabled", plr.name);
                                 }
                                 return;
@@ -469,14 +470,14 @@ namespace UntitledSandbox_Server
                             #endregion
                             #region GetObjects
                             case "GetObjects":
-                                StringBuilder builder = new StringBuilder();
+                                builder = new StringBuilder();
                                 for (int i = 0; i < objects.Count; i++)
                                 {
                                     if (i == objects.Count - 1) builder.Append(objects[i].ID);
                                     else builder.Append(objects[i].ID + ",");
                                 }
                                 if (builder.ToString() == "") return;
-                                SendMessage(stream, "Players,ReturnObjects," + builder.ToString(), plr.name);
+                                SendMessage(stream, "Players,ReturnObjects," + builder, plr.name);
                                 break;
                             #endregion
                             #region GetObjectInstance
@@ -557,7 +558,7 @@ namespace UntitledSandbox_Server
                                 else if (ReadPassword(plr.name) == "BadFile")
                                 {
                                     Console.WriteLine("> Players database is corrupted.", plr.name);
-                                    SendMessage(stream, "Disconnect,CorruptedDatabase", plr.name);
+                                    SendMessage(stream, "Disconnect,CorruptedDatabase");
                                     Task.Delay(1000).ContinueWith(t => client.Close());
                                 }
                                 else
