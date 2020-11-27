@@ -12,7 +12,7 @@ What is this, actually? It is a server for my game Untitled Sandbox, check it ou
 
 Below you can read the instructions about using this.
 
-You can get latest *auto release* [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
+You can get latest *auto release* by workflow [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
 
 **WARNING: Main game is done but it is not uploaded yet. This is preparing for the game's release. Also currently multiplayer in-game is in beta state.**
 
