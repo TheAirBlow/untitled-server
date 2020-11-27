@@ -24,9 +24,7 @@ For normal people:
 - Extract downloaded ZIP file
 - Open the main executable file
 - Select "Settings" option and change anything in the way that you want.
-
-They will not be reset on closing the program. More about in Settings paragraph.
-
+  They will not be reset on closing the program. More about in Settings paragraph.
 - Exit settings, and select "Server" option.
 - Done! Server is running and you can connect by your IP adress.
 
