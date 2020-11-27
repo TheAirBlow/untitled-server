@@ -4,6 +4,7 @@
 ![Downloads](https://img.shields.io/github/downloads/TheAirBlow/untitled-server/total)
 ![Fatness](https://img.shields.io/github/repo-size/TheAirBlow/untitled-server?style=flat-square)
 [![Codacy](https://app.codacy.com/project/badge/Grade/6098a1f6a5ec44e58169fdd31a58ca49)](https://www.codacy.com/gh/TheAirBlow/untitled-server/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TheAirBlow/untitled-server&amp;utm_campaign=Badge_Grade)
+![Workflow](https://github.com/TheAirBlow/untitled-server/workflows/Test%20and%20Build/badge.svg)
 
 This is repository with the source code and releases of Untitled Sandbox Server.
 
