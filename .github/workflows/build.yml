@@ -1,10 +1,8 @@
 name: Test and Build
 on:
   workflow_dispatch:
-    tags: "latest"
   push:
     types: [published]
-    tags: "latest"
     
 jobs:
   release:
@@ -52,6 +50,7 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
+          tag: "latest"
           files: "App*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
