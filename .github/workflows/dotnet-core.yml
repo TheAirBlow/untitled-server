@@ -1,4 +1,4 @@
-name: Build
+name: Build (Old)
 on:
   release:
     types: [published]
