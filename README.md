@@ -10,7 +10,7 @@ This is repository with the source code and releases of Untitled Sandbox Server.
 
 What is this, actually? It is a server for my game Untitled Sandbox, check it out on Google Play [here](https://nicememe.lol).
 
-Below you can read the 📗 Instructions about using this.
+Below you can read the Instructions about using this.
 
 You can get latest *auto builded release* by workflow [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
 
@@ -25,7 +25,7 @@ For normal people:
 - Open the main executable file
 - Select "Settings" option and change anything in the way that you want.
 
-They will not be reset on closing the program. More about in ⚙️ Settings paragraph.
+They will not be reset on closing the program. More about in Settings paragraph.
 
 - Exit settings, and select "Server" option.
 - Done! Server is running and you can connect by your IP adress.
