@@ -1,4 +1,4 @@
-# Untitled Sandbox Server
+# 💻 Untitled Sandbox Server
 
 ![Licence](https://img.shields.io/badge/Licence-GPL-brightgreen)
 ![Downloads](https://img.shields.io/github/downloads/TheAirBlow/untitled-server/total)
@@ -14,9 +14,9 @@ Below you can read the instructions about using this.
 
 You can get latest *auto builded release* by workflow [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
 
-**WARNING: Main game is done but it is not uploaded yet. This is preparing for the game's release. Also currently multiplayer in-game is in beta state.**
+**⚠️ WARNING: Main game is done but it is not uploaded yet. This is preparing for the game's release. Also currently multiplayer in-game is in beta state. ⚠️**
 
-## Instructions
+## 📗 Instructions
 
 For normal people:
 
@@ -30,7 +30,7 @@ They will not be reset on closing the program. More about settings is after this
 - Exit settings, and select "Server" option.
 - Done! Server is running and you can connect by your IP adress.
 
-## Settings
+## ⚙️ Settings
 
 Settings are:
 
@@ -43,13 +43,13 @@ Settings are:
 - Anti cheat
   In development. Currently does nothing.
 
-## Additional
+## ➕ Additional
 
-For programmers: Below you can find there are all sorts of packets, that are being sended by the server or client. Also for debugging code you can select &quot;Client&quot; option.
+🤖 For programmers: Below you can find there are all sorts of packets, that are being sended by the server or client. Also for debugging code you can select &quot;Client&quot; option.
 
-For normal people: There is nothing below for you.
+😎 For normal people: There is nothing below for you.
 
-## Packets
+## 📘 Packets
 
 Packets arguments are separated with a comma.
 
@@ -189,7 +189,8 @@ After sending some packets client will get a respnose by a packet with a similar
     Packet with message that object was destroyed.
     Arguments: ID.
 
-## TODO List
+## ✔️ TODO List
 
-- Implement anti-cheat
 - Make world saving
+- Plugins
+- Bots
