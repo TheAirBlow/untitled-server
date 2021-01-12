@@ -8,6 +8,8 @@
 
 This is repository with the source code and releases of Untitled Sandbox Server.
 
+Wait, what is it for? It is for my closed-source sandbox game which you can get [here](https://github.com/theairblow/untitled-sandbox/releases)_
+
 Below you can read the Instructions about using this.
 
 You can get latest *auto builded release* by workflow [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
