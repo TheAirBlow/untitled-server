@@ -8,8 +8,6 @@
 
 This is repository with the source code and releases of Untitled Sandbox Server.
 
-What is this, actually? It is a server for my game Untitled Sandbox, check it out on Google Play [here](https://nicememe.lol).
-
 Below you can read the Instructions about using this.
 
 You can get latest *auto builded release* by workflow [here](https://github.com/TheAirBlow/untitled-server/releases/tag/auto-build) if you want all latest changes that are not included in *official latest release*.
