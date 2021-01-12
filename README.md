@@ -8,7 +8,7 @@
 
 This is repository with the source code and releases of Untitled Sandbox Server.
 
-Wait, what is it for? It is for my closed-source sandbox game which you can get [here](https://github.com/theairblow/untitled-sandbox/releases)_
+Wait, what is it for? It is for my closed-source sandbox game which you can get [here](https://github.com/theairblow/untitled-sandbox/releases).
 
 Below you can read the Instructions about using this.
 
